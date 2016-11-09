@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"google.golang.org/appengine"
-	"os"
 )
 
 func main() {
