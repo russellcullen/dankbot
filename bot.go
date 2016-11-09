@@ -24,25 +24,15 @@ func main() {
 
 func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 	fmt.Println(m.Content)
-	if m.Content == "KappaArjun" {
-		replaceWithFile(s, m, "/Users/russell/Downloads/arjunkappa-small.png", "png")
-	}
-	if m.Content == "SombraDance" {
-		replaceWithFile(s, m, "/Users/russell/Downloads/sombra-anim.gif", "gif")
+	switch m.Content {
+	case "SombraDance":
+		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
 	}
 }
 
-func replaceWithFile(s *discordgo.Session, m *discordgo.MessageCreate, filepath string, filetype string) {
-	err := s.ChannelMessageDelete(m.ChannelID, m.ID)
+func sendMessage(s *discordgo.Session, channelId string, content string) {
+	_, err := s.ChannelMessageSend(channelId, content)
 	if err != nil {
-		fmt.Println("Error deleting message: ", err)
-	}
-	file, err := os.Open(filepath)
-	if err != nil {
-		fmt.Println("Error opening image: ", err)
-	}
-	_, err = s.ChannelFileSend(m.ChannelID, filetype, file)
-	if err != nil {
-		fmt.Println("Error sending spicy meme: ", err)
+		fmt.Println("Error sending message: ", err)
 	}
 }
