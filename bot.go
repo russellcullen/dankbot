@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
+	"github.com/coolbrow/DankBot/haiku"
 	"google.golang.org/appengine"
+	"strings"
 )
 
 func main() {
@@ -22,9 +24,14 @@ func main() {
 }
 
 func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
-	switch m.Content {
-	case "SombraDance":
+	if m.Content == "SombraDance" {
 		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
+	} else if strings.HasPrefix(m.Content, "/haiku") {
+		query := strings.SplitN(m.Content, " ", 2)[1]
+		url := haiku.TopUrl(query)
+		if url != "" {
+			sendMessage(s, m.ChannelID, url)
+		}
 	}
 }
 
