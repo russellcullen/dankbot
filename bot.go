@@ -31,6 +31,8 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		url := haiku.TopUrl(query)
 		if url != "" {
 			sendMessage(s, m.ChannelID, url)
+		} else {
+			sendMessage(s, m.ChannelID, "No youtube haiku found")
 		}
 	}
 }

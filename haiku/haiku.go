@@ -35,6 +35,9 @@ func TopUrl(query string) string {
 		fmt.Println("Error parsing json: ", err)
 		return ""
 	}
+	if len(result.Data.Children) == 0 {
+		return ""
+	}
 	top := result.Data.Children[0]
 	return top.Data.Url
 }
