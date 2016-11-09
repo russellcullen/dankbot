@@ -22,7 +22,6 @@ func main() {
 }
 
 func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
-	fmt.Println(m.Content)
 	switch m.Content {
 	case "SombraDance":
 		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
