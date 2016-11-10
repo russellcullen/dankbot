@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"github.com/coolbrow/DankBot/haiku"
+	"github.com/coolbrow/dankbot/haiku"
 	"google.golang.org/appengine"
 	"strings"
 )
