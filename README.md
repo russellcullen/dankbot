@@ -1,4 +1,4 @@
-<img align="left" src="http://i.imgur.com/j3dV8LI.png">
+<img align="right" src="http://i.imgur.com/j3dV8LI.png">
 # DankBot
 A Dank Discord Bot
 
