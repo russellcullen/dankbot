@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"github.com/coolbrow/dankbot/haiku"
+	"github.com/coolbrow/dankbot/reddit"
 	"google.golang.org/appengine"
 	"strings"
 )
@@ -34,15 +34,21 @@ func main() {
 }
 
 func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
-	if m.Content == "SombraDance" {
+	args := strings.Split(m.Content, " ")
+	switch args[0] {
+	case "SombraDance":
 		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
-	} else if strings.HasPrefix(m.Content, "/haiku") {
-		query := strings.SplitN(m.Content, " ", 2)[1]
-		url := haiku.TopUrl(query)
+	case "/reddit":
+		var url string
+		if len(args) >= 3 {
+			url = reddit.TopSearch(args[1], args[2])
+		} else if len(args) == 2 {
+			url = reddit.Top(args[1])
+		}
 		if url != "" {
 			sendMessage(s, m.ChannelID, url)
 		} else {
-			sendMessage(s, m.ChannelID, "No youtube haiku found")
+			sendMessage(s, m.ChannelID, "No results found")
 		}
 	}
 }
