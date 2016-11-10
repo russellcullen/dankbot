@@ -8,7 +8,7 @@ import (
 	"net/url"
 )
 
-const search_haiku_url string = "https://www.reddit.com/r/youtubehaiku/search.json?q=%s&restrict_sr=on&sort=hot"
+const searchHaikuURL string = "https://www.reddit.com/r/youtubehaiku/search.json?q=%s&restrict_sr=on&sort=hot"
 
 type post struct {
 	Data struct {
@@ -22,6 +22,8 @@ type response struct {
 	} `json:"data"`
 }
 
+// TopUrl searches r/youtubehaiku for the query and returns
+// the top search result, or empty string if none was found.
 func TopUrl(query string) string {
 	b, err := doRequest(query)
 	if err != nil {
@@ -46,7 +48,7 @@ func doRequest(query string) ([]byte, error) {
 	client := http.Client{}
 
 	newQuery := url.QueryEscape(query)
-	req, err := http.NewRequest("GET", fmt.Sprintf(search_haiku_url, newQuery), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf(searchHaikuURL, newQuery), nil)
 	if err != nil {
 		fmt.Println("Error creating request: ", err)
 		return nil, err
