@@ -2,6 +2,8 @@
 # DankBot
 A Dank Discord Bot
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/coolbrow/dankbot)](https://goreportcard.com/report/github.com/coolbrow/dankbot)
+
 ## Adding DankBot to a Discord Server
 
 Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id=245577797244944385&scope=bot&permissions=59392) and select your server
