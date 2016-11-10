@@ -13,6 +13,8 @@ const baseURL string = "https://www.reddit.com/"
 const subredditURL string = baseURL + "r/%s.json"
 const subredditSearchURL string = baseURL + "r/%s/search.json"
 
+var random = rand.New(rand.NewSource(time.Now().UnixNano()))
+
 type post struct {
 	Data struct {
 		URL      string `json:"url"`
@@ -58,8 +60,7 @@ func randURLNotSticky(posts []post) string {
 		first++
 	}
 	posts = posts[first:]
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	post := posts[r.Intn(len(posts))]
+	post := posts[random.Intn(len(posts))]
 	return post.Data.URL
 }
 
