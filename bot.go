@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/coolbrow/DankBot/haiku"
@@ -9,14 +10,23 @@ import (
 )
 
 func main() {
-	discord, err := discordgo.New("Bot MjQ1NTc3Nzk3MjQ0OTQ0Mzg1.CwORrg.9RU0tgVnRE3s41Y-W8Z0PU339q8")
+	token := flag.String("token", "", "Client token")
+	flag.Parse()
+
+	if *token == "" {
+		fmt.Println("Must provide client token. Run with -h for more info")
+		return
+	}
+	discord, err := discordgo.New("Bot " + *token)
 	if err != nil {
 		fmt.Println("Error authenticating: ", err)
+		return
 	}
 	discord.AddHandler(newMessage)
 	err = discord.Open()
 	if err != nil {
 		fmt.Println("Error opening Discord session: ", err)
+		return
 	}
 
 	fmt.Println("DankBot is now running.")
