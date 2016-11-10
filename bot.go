@@ -36,14 +36,14 @@ func main() {
 func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 	args := strings.Split(m.Content, " ")
 	switch args[0] {
-	case "SombraDance":
+	case "/sombra":
 		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
 	case "/reddit":
 		var url string
 		if len(args) >= 3 {
-			url = reddit.TopSearch(args[1], args[2])
+			url = reddit.RandomSearch(args[1], args[2])
 		} else if len(args) == 2 {
-			url = reddit.Top(args[1])
+			url = reddit.Random(args[1])
 		}
 		if url != "" {
 			sendMessage(s, m.ChannelID, url)

@@ -11,13 +11,13 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
 <br/>
 ## Commands
 ### Images
-* `SombraDance`
-  * http://i.imgur.com/lq3TwJi.gif
+* `/sombra`
+  * Posts [this gif](http://i.imgur.com/lq3TwJi.gif)
 
 ### Reddit Search
 * `/reddit [subreddit] [query]`
-  * Searches given subreddit with query and returns top result. 
-  * If no query is given, returns current top subreddit item
+  * Searches given subreddit with query and returns random top result. 
+  * If no query is given, returns random current top subreddit item
   
 > **Note:** Ignores sticky posts 
 

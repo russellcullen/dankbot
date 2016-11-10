@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
+	"time"
 )
 
 const baseURL string = "https://www.reddit.com/"
@@ -24,36 +26,41 @@ type response struct {
 	} `json:"data"`
 }
 
-// TopSearch searches the given subreddit for the query and returns
-// the top search result, or empty string if none was found.
-func TopSearch(subreddit, query string) string {
+// RandomSearch searches the given subreddit for the query and returns
+// a random result (from the first page), or empty string if none was found.
+func RandomSearch(subreddit, query string) string {
 	posts, err := search(subreddit, query)
 	if err != nil {
 		fmt.Println("Error making request: ", err)
 		return ""
 	}
 
-	return topURLNotSticky(posts)
+	return randURLNotSticky(posts)
 }
 
-// Top returns the current top post of the given subreddit.
-func Top(subreddit string) string {
+// Random returns a random post from the current first page of the given subreddit
+func Random(subreddit string) string {
 	posts, err := top(subreddit)
 	if err != nil {
 		fmt.Println("Error making request: ", err)
 		return ""
 	}
 
-	return topURLNotSticky(posts)
+	return randURLNotSticky(posts)
 }
 
-func topURLNotSticky(posts []post) string {
+func randURLNotSticky(posts []post) string {
+	first := 0
 	for _, p := range posts {
 		if !p.Data.Stickied {
-			return p.Data.URL
+			break
 		}
+		first++
 	}
-	return ""
+	posts = posts[first:]
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	post := posts[r.Intn(len(posts))]
+	return post.Data.URL
 }
 
 func search(subreddit, query string) ([]post, error) {
