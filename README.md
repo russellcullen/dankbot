@@ -15,9 +15,12 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
   * http://i.imgur.com/lq3TwJi.gif
 
 ### Reddit Search
-* `/haiku [query]`
-  * Posts the top search result from [/r/youtubehaiku](https://www.reddit.com/r/youtubehaiku/)
+* `/reddit [subreddit] [query]`
+  * Searches given subreddit with query and returns top result. 
+  * If no query is given, returns current top subreddit item
   
+> **Note:** Ignores sticky posts 
+
 <br/>
 ## Setup and Run
 
