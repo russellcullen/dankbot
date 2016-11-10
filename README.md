@@ -1,14 +1,16 @@
 <img align="right" src="http://i.imgur.com/j3dV8LI.png">
 # DankBot
-A Dank Discord Bot
+A Dank Discord Bot. See [Commands](#commands) for a list of features. 
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/coolbrow/dankbot)](https://goreportcard.com/report/github.com/coolbrow/dankbot)
 
+<a name="integrate"></a>
 ## Adding DankBot to a Discord Server
 
 Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id=245577797244944385&scope=bot&permissions=59392) and select your server
 
 <br/>
+<a name="commands"></a>
 ## Commands
 ### Images
 * `/sombra`
@@ -22,6 +24,7 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
 > **Note:** Ignores sticky posts 
 
 <br/>
+<a name="setup"></a>
 ## Setup and Run
 
 This assumes you already have a working Go environment, if not please see
