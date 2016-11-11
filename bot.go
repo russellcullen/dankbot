@@ -49,6 +49,10 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 			msg = "*No results found.*"
 		}
 		sendMessage(s, m.ChannelID, msg)
+	case "/rip":
+		name := strings.Join(args[1:], " ")
+		rip := fmt.Sprintf("http://www.tombstonebuilder.com/generate.php?top1=RIP&top3=%s", name)
+		sendMessage(s, m.ChannelID, rip)
 	}
 }
 
