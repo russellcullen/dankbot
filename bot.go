@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"google.golang.org/appengine"
+	"net/url"
 	"strings"
 )
 
@@ -50,7 +51,7 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		}
 		sendMessage(s, m.ChannelID, msg)
 	case "/rip":
-		name := strings.Join(args[1:], " ")
+		name := url.QueryEscape(strings.Join(args[1:], " "))
 		rip := fmt.Sprintf("http://www.tombstonebuilder.com/generate.php?top1=RIP&top3=%s", name)
 		sendMessage(s, m.ChannelID, rip)
 	}
