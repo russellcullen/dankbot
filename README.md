@@ -13,13 +13,15 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
 <a name="commands"></a>
 ## Commands
 ### Images
-* `/sombra`
+* `!sombra`
   * Posts [this gif](http://i.imgur.com/lq3TwJi.gif)
-* `/rip [name]`
+* `!rip [name]`
   * Posts [this image](http://www.tombstonebuilder.com/generate.php?top1=RIP&top3=name) with name supplied
+* `!retro [your], [text], [here]`
+  * Generates retro text from [here](https://photofunia.com/categories/all_effects/retro-wave). Supports up to 3 lines (comma delimited).
 
 ### Reddit Search
-* `/reddit [subreddit] [query]`
+* `!reddit [subreddit] [query]`
   * Searches given subreddit with query and returns random top result. 
   * If no query is given, returns random current top subreddit item
   

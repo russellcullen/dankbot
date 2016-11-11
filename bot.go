@@ -1,6 +1,7 @@
 package main
 
 import (
+	"./images"
 	"./reddit"
 	"flag"
 	"fmt"
@@ -37,9 +38,9 @@ func main() {
 func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 	args := strings.Split(m.Content, " ")
 	switch args[0] {
-	case "/sombra":
-		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
-	case "/reddit":
+	case "!sombra":
+		sendMessage(s, m.ChannelID, images.Sombra())
+	case "!reddit":
 		var msg string
 		if len(args) >= 3 {
 			msg = reddit.RandomSearch(args[1], strings.Join(args[1:], " "))
@@ -52,10 +53,25 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 			msg = "*No results found.*"
 		}
 		sendMessage(s, m.ChannelID, msg)
-	case "/rip":
+	case "!rip":
 		name := url.QueryEscape(strings.Join(args[1:], " "))
-		rip := fmt.Sprintf("http://www.tombstonebuilder.com/generate.php?top1=RIP&top3=%s", name)
-		sendMessage(s, m.ChannelID, rip)
+		sendMessage(s, m.ChannelID, images.GenerateRIP(name))
+	case "!retro":
+		lines := strings.Split(strings.Join(args[1:], " "), ",")
+		var text1, text2, text3 string
+		switch {
+		case len(lines) >= 3:
+			text3 = strings.Join(lines[2:], " ")
+			fallthrough
+		case len(lines) == 2:
+			text2 = lines[1]
+			fallthrough
+		case len(lines) == 1:
+			text1 = lines[0]
+			fallthrough
+		default:
+			sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
+		}
 	}
 }
 
