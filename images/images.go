@@ -1,10 +1,8 @@
 package images
 
 import (
-	//"bytes"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
-	//"io/ioutil"
 	"math/rand"
 	"net/http"
 	"net/url"
