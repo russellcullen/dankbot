@@ -46,7 +46,7 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 			msg = reddit.Random(args[1])
 		}
 		if msg == "" {
-			msg = "<:ArjunKappa:245650075236171776> No results found <:ArjunKappa:245650075236171776>"
+			msg = "*No results found.*"
 		}
 		sendMessage(s, m.ChannelID, msg)
 	}
