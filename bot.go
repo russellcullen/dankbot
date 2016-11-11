@@ -1,11 +1,11 @@
 package main
 
 import (
-	"./images"
-	"./reddit"
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
+	"github.com/coolbrow/dankbot/images"
+	"github.com/coolbrow/dankbot/reddit"
 	"google.golang.org/appengine"
 	"net/url"
 	"strings"
