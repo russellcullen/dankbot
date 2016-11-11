@@ -72,8 +72,6 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		default:
 			sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
 		}
-	case "!test":
-		sendMessage(s, m.ChannelID, "TEST2")
 	}
 }
 
