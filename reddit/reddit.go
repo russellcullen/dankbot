@@ -60,6 +60,9 @@ func randURLNotSticky(posts []post) string {
 		first++
 	}
 	posts = posts[first:]
+	if len(posts) == 0 {
+		return ""
+	}
 	post := posts[random.Intn(len(posts))]
 	return post.Data.URL
 }

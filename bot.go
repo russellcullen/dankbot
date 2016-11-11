@@ -1,10 +1,10 @@
 package main
 
 import (
+	"./reddit"
 	"flag"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"github.com/coolbrow/dankbot/reddit"
 	"google.golang.org/appengine"
 	"strings"
 )
@@ -53,8 +53,8 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 }
 
-func sendMessage(s *discordgo.Session, channelId string, content string) {
-	_, err := s.ChannelMessageSend(channelId, content)
+func sendMessage(s *discordgo.Session, channelID string, content string) {
+	_, err := s.ChannelMessageSend(channelID, content)
 	if err != nil {
 		fmt.Println("Error sending message: ", err)
 	}
