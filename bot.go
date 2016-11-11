@@ -31,6 +31,8 @@ func main() {
 		return
 	}
 
+	discord.UpdateStatus(0, "Half-Life 3")
+
 	fmt.Println("DankBot is now running.")
 	appengine.Main()
 }
