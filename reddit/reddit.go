@@ -9,6 +9,8 @@ import (
 	"time"
 )
 
+const noResults string = "*No results found.*"
+
 const baseURL string = "https://www.reddit.com/"
 const subredditURL string = baseURL + "r/%s.json"
 const subredditSearchURL string = baseURL + "r/%s/search.json"
@@ -34,7 +36,7 @@ func RandomSearch(subreddit, query string) string {
 	posts, err := search(subreddit, query)
 	if err != nil {
 		fmt.Println("Error making request: ", err)
-		return ""
+		return noResults
 	}
 
 	return randURLNotSticky(posts)
@@ -45,7 +47,7 @@ func Random(subreddit string) string {
 	posts, err := top(subreddit)
 	if err != nil {
 		fmt.Println("Error making request: ", err)
-		return ""
+		return noResults
 	}
 
 	return randURLNotSticky(posts)
@@ -61,7 +63,7 @@ func randURLNotSticky(posts []post) string {
 	}
 	posts = posts[first:]
 	if len(posts) == 0 {
-		return ""
+		return noResults
 	}
 	post := posts[random.Intn(len(posts))]
 	return post.Data.URL

@@ -42,9 +42,11 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 	case "/reddit":
 		var msg string
 		if len(args) >= 3 {
-			msg = reddit.RandomSearch(args[1], args[2])
+			msg = reddit.RandomSearch(args[1], strings.Join(args[1:], " "))
 		} else if len(args) == 2 {
 			msg = reddit.Random(args[1])
+		} else {
+			msg = "*Must provide a subreddit.*"
 		}
 		if msg == "" {
 			msg = "*No results found.*"
