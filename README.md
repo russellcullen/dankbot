@@ -15,6 +15,8 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
 ### Images
 * `/sombra`
   * Posts [this gif](http://i.imgur.com/lq3TwJi.gif)
+* `/rip [name]`
+  * Posts [this image](http://www.tombstonebuilder.com/generate.php?top1=RIP&top3=name) with name supplied
 
 ### Reddit Search
 * `/reddit [subreddit] [query]`
