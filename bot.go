@@ -39,17 +39,16 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 	case "/sombra":
 		sendMessage(s, m.ChannelID, "http://i.imgur.com/lq3TwJi.gif")
 	case "/reddit":
-		var url string
+		var msg string
 		if len(args) >= 3 {
-			url = reddit.RandomSearch(args[1], args[2])
+			msg = reddit.RandomSearch(args[1], args[2])
 		} else if len(args) == 2 {
-			url = reddit.Random(args[1])
+			msg = reddit.Random(args[1])
 		}
-		if url != "" {
-			sendMessage(s, m.ChannelID, url)
-		} else {
-			sendMessage(s, m.ChannelID, "No results found")
+		if msg == "" {
+			msg = "<:ArjunKappa:245650075236171776> No results found <:ArjunKappa:245650075236171776>"
 		}
+		sendMessage(s, m.ChannelID, msg)
 	}
 }
 
