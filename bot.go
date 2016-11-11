@@ -73,7 +73,7 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 			sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
 		}
 	case "!test":
-		sendMessage(s, m.ChannelID, "WOW TEST")
+		sendMessage(s, m.ChannelID, "TEST2")
 	}
 }
 
