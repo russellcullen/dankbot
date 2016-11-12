@@ -12,6 +12,9 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
 <br/>
 <a name="commands"></a>
 ## Commands
+* `!help`
+  * Shows this list of commands
+
 ### Images
 * `!sombra`
   * Posts [this gif](http://i.imgur.com/lq3TwJi.gif)

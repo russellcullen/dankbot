@@ -11,6 +11,21 @@ import (
 	"strings"
 )
 
+const usage string = "\n" +
+	"*DankBot Commands:*\n\n" +
+	"`!help`\n" +
+	"    Shows this text.\n\n" +
+	"`!reddit [subreddit]`\n" +
+	"    Returns random top result of given subreddit.\n\n" +
+	"`!reddit [subreddit] [query]`\n" +
+	"    Searches given subreddit for query and returns random top result.\n\n" +
+	"`!rip [name]`\n" +
+	"    RIP pic\n\n" +
+	"`!retro [your], [text], [here]`\n" +
+	"    Generates retro text\n\n" +
+	"`!sombra`\n" +
+	"    ~~Party~~ Fiesta time\n\n"
+
 func main() {
 	token := flag.String("token", "", "Client token")
 	flag.Parse()
@@ -74,7 +89,10 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		default:
 			sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
 		}
+	case "!help":
+		sendMessage(s, m.ChannelID, usage)
 	}
+
 }
 
 func sendMessage(s *discordgo.Session, channelID string, content string) {
