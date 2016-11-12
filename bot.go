@@ -78,17 +78,16 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		var text1, text2, text3 string
 		switch {
 		case len(lines) >= 3:
-			text3 = strings.Join(lines[2:], " ")
-			fallthrough
-		case len(lines) == 2:
-			text2 = lines[1]
-			fallthrough
-		case len(lines) == 1:
 			text1 = lines[0]
-			fallthrough
-		default:
-			sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
+			text2 = lines[1]
+			text3 = strings.Join(lines[2:], " ")
+		case len(lines) == 2:
+			text1 = lines[0]
+			text2 = lines[1]
+		case len(lines) == 1:
+			text2 = lines[0]
 		}
+		sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
 	case "!help":
 		sendMessage(s, m.ChannelID, usage)
 	}
