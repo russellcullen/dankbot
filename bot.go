@@ -6,9 +6,11 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/coolbrow/dankbot/images"
 	"github.com/coolbrow/dankbot/reddit"
+	"github.com/coolbrow/dankbot/status"
 	"google.golang.org/appengine"
 	"net/url"
 	"strings"
+	"time"
 )
 
 const usage string = "\n" +
@@ -46,7 +48,11 @@ func main() {
 		return
 	}
 
-	discord.UpdateStatus(0, "Half-Life 3")
+	statusUpdate := func(s string) {
+		discord.UpdateStatus(0, s)
+	}
+	statusUpdate(status.RandomStatus())
+	status.TickerStatus(time.Hour*6, statusUpdate)
 
 	fmt.Println("DankBot is now running.")
 	appengine.Main()
