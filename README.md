@@ -23,6 +23,12 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
 * `!retro [your], [text], [here]`
   * Generates retro text from [here](https://photofunia.com/categories/all_effects/retro-wave). Supports up to 3 lines (comma delimited).
 
+### Text
+* `!catfact`
+  * Responds with a random cat fact
+* `!swanson`
+  * Response with a random Ron Swanson quote
+
 ### Reddit Search
 * `!reddit [subreddit] [query]`
   * Searches given subreddit with query and returns random top result. 

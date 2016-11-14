@@ -7,6 +7,7 @@ import (
 	"github.com/coolbrow/dankbot/images"
 	"github.com/coolbrow/dankbot/reddit"
 	"github.com/coolbrow/dankbot/status"
+	"github.com/coolbrow/dankbot/textapis"
 	"google.golang.org/appengine"
 	"net/url"
 	"strings"
@@ -26,7 +27,11 @@ const usage string = "\n" +
 	"`!retro [your], [text], [here]`\n" +
 	"    Generates retro text\n\n" +
 	"`!sombra`\n" +
-	"    ~~Party~~ Fiesta time\n\n"
+	"    ~~Party~~ Fiesta time\n\n" +
+	"`!swanson`\n" +
+	"    Ron Swanson quote\n\n" +
+	"`!catfact`\n" +
+	"    Cat fact\n\n"
 
 func main() {
 	token := flag.String("token", "", "Client token")
@@ -96,6 +101,10 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		sendMessage(s, m.ChannelID, images.GenerateRetro(text1, text2, text3))
 	case "!help":
 		sendMessage(s, m.ChannelID, usage)
+	case "!catfact":
+		sendMessage(s, m.ChannelID, textapis.CatFact())
+	case "!swanson":
+		sendMessage(s, m.ChannelID, textapis.Swanson())
 	}
 
 }
