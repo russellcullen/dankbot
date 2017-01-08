@@ -28,6 +28,8 @@ Simple! Just click [this link](https://discordapp.com/oauth2/authorize?client_id
   * Responds with a random cat fact
 * `!swanson`
   * Response with a random Ron Swanson quote
+* `!roll NdM`
+  * Rolls M-sided dice N times; posts the sum
 
 ### Reddit Search
 * `!reddit [subreddit] [query]`
