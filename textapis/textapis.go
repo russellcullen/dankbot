@@ -3,8 +3,13 @@ package textapis
 import (
 	"encoding/json"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"time"
 )
+
+var random = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 // CatFact returns a random cat fact
 func CatFact() string {
@@ -30,6 +35,15 @@ func Swanson() string {
 	}
 
 	return r[0]
+}
+
+// Dice returns the sum of rolls of a many sided dice
+func Dice(reps, side int) string {
+	var sum int
+	for i := 0; i < reps; i++ {
+		sum = sum + random.Intn(side) + 1
+	}
+	return strconv.Itoa(sum)
 }
 
 func getAndParse(u string, t interface{}) error {

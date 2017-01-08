@@ -3,15 +3,17 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/url"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/bwmarrin/discordgo"
 	"github.com/coolbrow/dankbot/images"
 	"github.com/coolbrow/dankbot/reddit"
 	"github.com/coolbrow/dankbot/status"
 	"github.com/coolbrow/dankbot/textapis"
 	"google.golang.org/appengine"
-	"net/url"
-	"strings"
-	"time"
 )
 
 const usage string = "\n" +
@@ -31,7 +33,9 @@ const usage string = "\n" +
 	"`!swanson`\n" +
 	"    Ron Swanson quote\n\n" +
 	"`!catfact`\n" +
-	"    Cat fact\n\n"
+	"    Cat fact\n\n" +
+	"`!roll NdM`\n" +
+	"	Rolls M-sided dice N times; posts the sum"
 
 func main() {
 	token := flag.String("token", "", "Client token")
@@ -105,6 +109,19 @@ func newMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
 		sendMessage(s, m.ChannelID, textapis.CatFact())
 	case "!swanson":
 		sendMessage(s, m.ChannelID, textapis.Swanson())
+	case "!roll":
+		elems := strings.Split(args[1], "d")
+		reps, err := strconv.Atoi(elems[0])
+		if err != nil {
+			fmt.Println("Error parsing dice count: ", err)
+			return
+		}
+		side, err := strconv.Atoi(elems[1])
+		if err != nil {
+			fmt.Println("Error parsing dice sides: ", err)
+			return
+		}
+		sendMessage(s, m.ChannelID, textapis.Dice(reps, side))
 	}
 
 }
